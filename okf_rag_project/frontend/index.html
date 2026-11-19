@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OKF AI Knowledge Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span>✦</span>
+            OKF AI
+        </div>
+
+        <button class="new-chat" onclick="newChat()">
+            + New Chat
+        </button>
+
+        <div class="sidebar-section">
+            <p>KNOWLEDGE BASE</p>
+
+            <div class="menu-item">
+                📚 OKF Documents
+            </div>
+
+            <div class="menu-item">
+                🗄️ ChromaDB Storage
+            </div>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="status-dot"></div>
+            <span id="connectionStatus">Connecting...</span>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <h3>Knowledge Assistant</h3>
+                <p>Retrieval Augmented Generation</p>
+            </div>
+
+            <button class="ingest-btn" onclick="ingestKnowledge()">
+                ↻ Ingest Knowledge
+            </button>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section class="dashboard">
+
+            <div class="stat-card">
+                <span>Vector Storage</span>
+                <h2 id="vectorCount">0</h2>
+                <p>Stored vectors</p>
+            </div>
+
+            <div class="stat-card">
+                <span>AI Engine</span>
+                <h2>Ollama</h2>
+                <p>Answer generation</p>
+            </div>
+
+            <div class="stat-card">
+                <span>Vector Database</span>
+                <h2>ChromaDB</h2>
+                <p>Semantic retrieval</p>
+            </div>
+
+        </section>
+
+
+        <!-- CHAT -->
+        <section class="chat-section">
+
+            <div class="welcome" id="welcome">
+
+                <div class="welcome-icon">✦</div>
+
+                <h1>Ask your Knowledge Base</h1>
+
+                <p>
+                    Ask questions about your uploaded OKF documents.
+                    AI will retrieve relevant knowledge and generate answers.
+                </p>
+
+                <div class="suggestions">
+
+                    <button onclick="suggestQuestion('What is Python?')">
+                        What is Python?
+                    </button>
+
+                    <button onclick="suggestQuestion('Explain machine learning')">
+                        Explain machine learning
+                    </button>
+
+                    <button onclick="suggestQuestion('What is RAG?')">
+                        What is RAG?
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="messages" id="messages"></div>
+
+
+            <!-- INPUT -->
+            <div class="chat-input">
+
+                <textarea
+                    id="question"
+                    placeholder="Ask anything from your knowledge base..."
+                    rows="1"
+                    onkeydown="handleEnter(event)"
+                ></textarea>
+
+                <button onclick="sendQuestion()" id="sendBtn">
+                    ➤
+                </button>
+
+            </div>
+
+            <p class="disclaimer">
+                AI answers are generated from retrieved knowledge.
+            </p>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
